@@ -1,0 +1,67 @@
+#! Crear base de datos
+use TorneoDeportivo
+
+#! Crear colecciones
+db.createCollection("deportistas")
+db.createCollection("entrenadores")
+db.createCollection("equipos")
+db.createCollection("arbitros")
+db.createCollection("encuentros")
+db.createCollection("tablaPosiciones")
+
+#! insertar datos
+db.deportistas.insertMany([
+  { nombre: "Lionel Messi", posicion: "Delantero", edad: 34 },
+  { nombre: "Cristiano Ronaldo", posicion: "Delantero", edad: 36 },
+  { nombre: "Neymar Jr.", posicion: "Delantero", edad: 29 },
+  { nombre: "Kevin De Bruyne", posicion: "Centrocampista", edad: 30 },
+  { nombre: "Virgil van Dijk", posicion: "Defensor", edad: 30 }
+]);
+
+db.entrenadores.insertMany([
+  { nombre: "Pep Guardiola", edad: 50, nacionalidad: "Español" },
+  { nombre: "Jurgen Klopp", edad: 54, nacionalidad: "Alemán" },
+  { nombre: "Zinedine Zidane", edad: 49, nacionalidad: "Francés" },
+  { nombre: "Carlo Ancelotti", edad: 62, nacionalidad: "Italiano" },
+  { nombre: "Diego Simeone", edad: 51, nacionalidad: "Argentino" }
+]);
+
+db.equipos.insertMany([
+  { nombre: "FC Barcelona", pais: "España", entrenador: "Pep Guardiola" },
+  { nombre: "Real Madrid CF", pais: "España", entrenador: "Zinedine Zidane" },
+  { nombre: "Manchester City FC", pais: "Inglaterra", entrenador: "Pep Guardiola" },
+  { nombre: "Liverpool FC", pais: "Inglaterra", entrenador: "Jurgen Klopp" },
+  { nombre: "AC Milan", pais: "Italia", entrenador: "Carlo Ancelotti" }
+]);
+
+db.arbitros.insertMany([
+  { nombre: "Mark Clattenburg", nacionalidad: "Inglés", edad: 46 },
+  { nombre: "Felix Brych", nacionalidad: "Alemán", edad: 46 },
+  { nombre: "Bjorn Kuipers", nacionalidad: "Neerlandés", edad: 48 },
+  { nombre: "Nicola Rizzoli", nacionalidad: "Italiano", edad: 49 },
+  { nombre: "Andres Cunha", nacionalidad: "Uruguayo", edad: 46 }
+]);
+
+db.encuentros.insertMany([
+  { equipoLocal: "FC Barcelona", equipoVisitante: "Real Madrid CF", fecha: ISODate("2023-04-01T20:00:00Z"), resultado: "2-1" },
+  { equipoLocal: "Manchester City FC", equipoVisitante: "Liverpool FC", fecha: ISODate("2023-04-02T18:30:00Z"), resultado: "0-0" },
+  { equipoLocal: "AC Milan", equipoVisitante: "FC Barcelona", fecha: ISODate("2023-04-03T19:45:00Z"), resultado: "1-3" },
+  { equipoLocal: "Real Madrid CF", equipoVisitante: "Manchester City FC", fecha: ISODate("2023-04-04T21:00:00Z"), resultado: "2-2" },
+  { equipoLocal: "Liverpool FC", equipoVisitante: "AC Milan", fecha: ISODate("2023-04-05T20:15:00Z"), resultado: "3-1" }
+]);
+
+db.tablaPosiciones.insertMany([
+  { equipo: "FC Barcelona", puntos: 9, partidosJugados: 3, ganados: 3, empatados: 0, perdidos: 0 },
+  { equipo: "Real Madrid CF", puntos: 4, partidosJugados: 3, ganados: 1, empatados: 1, perdidos: 1 },
+  { equipo: "Manchester City FC", puntos: 2, partidosJugados: 3, ganados: 0, empatados: 2, perdidos: 1 },
+  { equipo: "Liverpool FC", puntos: 1, partidosJugados: 2, ganados: 0, empatados: 1, perdidos: 1 },
+  { equipo: "AC Milan", puntos: 0, partidosJugados: 2, ganados: 0, empatados: 0, perdidos: 2 }
+]);
+
+#! Consultas de datos insertados
+db.deportistas.find();
+db.entrenadores.find();
+db.equipos.find();
+db.arbitros.find();
+db.encuentros.find();
+db.tablaPosiciones.find();
